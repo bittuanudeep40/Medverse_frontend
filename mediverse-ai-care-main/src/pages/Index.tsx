@@ -30,6 +30,7 @@ const Index = () => {
         isVisible={showLoading} 
         onComplete={handleLoadingComplete}
       />
+      <div className="min-h-screen bg-background overflow-x-hidden relative">
       
       <div className="min-h-screen bg-background overflow-x-hidden relative">
         {/* Interactive Particle Background */}
