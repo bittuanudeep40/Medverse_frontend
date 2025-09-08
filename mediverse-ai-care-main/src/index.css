@@ -83,8 +83,17 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased; /* Improves font rendering */
+    -moz-osx-font-smoothing: grayscale; /* Improves font rendering */
     background-image: var(--gradient-mesh);
-    background-attachment: fixed;
+    background-attachment: scroll; /* Use scroll on mobile for better performance */
+  }
+
+  /* Use fixed attachment only on larger screens (desktops) */
+  @media (min-width: 768px) {
+    body {
+      background-attachment: fixed;
+    }
   }
 
   /* Glassmorphism Base */
