@@ -100,6 +100,12 @@
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
   }
+    body {
+  @apply bg-background text-foreground;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-image: var(--gradient-mesh);
+  background-attachment: fixed;
+}
   
   /* Premium Text Gradients */
   .text-gradient-primary {
