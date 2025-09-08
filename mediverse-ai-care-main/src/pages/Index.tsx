@@ -26,12 +26,11 @@ const Index = () => {
 
   return (
     <>
-      <LoadingScreen 
-        isVisible={showLoading} 
+      <LoadingScreen
+        isVisible={showLoading}
         onComplete={handleLoadingComplete}
       />
-      <div className="min-h-screen bg-background overflow-x-hidden relative">
-      
+      {/* This is the single, corrected main container div */}
       <div className="min-h-screen bg-background overflow-x-hidden relative">
         {/* Interactive Particle Background */}
         <ParticleField />
@@ -43,45 +42,45 @@ const Index = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <Header 
+          <Header
             isServiceView={showServices}
             onGetStarted={handleGetStarted}
           />
 
           <main className="relative">
-          <AnimatePresence mode="wait">
-            {!showServices ? (
-              <motion.div
-                key="hero"
-                initial={{ opacity: 1 }}
-                exit={{ 
-                  opacity: 0,
-                  y: -50,
-                  transition: { duration: 0.6, ease: 'easeInOut' }
-                }}
-              >
-                <HeroSection onGetStarted={handleGetStarted} />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="services"
-                initial={{ 
-                  opacity: 0,
-                  y: 50
-                }}
-                animate={{ 
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.6, ease: 'easeOut' }
-                }}
-              >
-                <ServicesSection onHeartPredictionClick={handleHeartPredictionClick} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </main>
+            <AnimatePresence mode="wait">
+              {!showServices ? (
+                <motion.div
+                  key="hero"
+                  initial={{ opacity: 1 }}
+                  exit={{
+                    opacity: 0,
+                    y: -50,
+                    transition: { duration: 0.6, ease: 'easeInOut' }
+                  }}
+                >
+                  <HeroSection onGetStarted={handleGetStarted} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="services"
+                  initial={{
+                    opacity: 0,
+                    y: 50
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.6, ease: 'easeOut' }
+                  }}
+                >
+                  <ServicesSection onHeartPredictionClick={handleHeartPredictionClick} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </main>
 
-          <HeartPredictionModal 
+          <HeartPredictionModal
             isOpen={showModal}
             onClose={() => setShowModal(false)}
           />
