@@ -1,17 +1,19 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { ChevronRight, Sparkles, Activity, Zap } from 'lucide-react';
+import { ChevronRight, Sparkles, Activity } from 'lucide-react';
 import videoBg from '@/assets/v1.mp4';
 import MagneticButton from './MagneticButton';
 import TypewriterText from './TypewriterText';
 import AnimatedCounter from './AnimatedCounter';
 import ScrollReveal from './ScrollReveal';
+import { useIsMobile } from '@/hooks/use-mobile'; // Import the hook
 
 interface HeroSectionProps {
   onGetStarted: () => void;
 }
 
 export default function HeroSection({ onGetStarted }: HeroSectionProps) {
+  const isMobile = useIsMobile(); // Check for mobile
   const typewriterTexts = [
     'Deciphered by AI',
     'Analyzed Instantly',
@@ -33,7 +35,8 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
       
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 6 }).map((_, i) => (
+        {/* Reduce element count on mobile */}
+        {Array.from({ length: isMobile ? 3 : 6 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-primary/20 rounded-full"
@@ -49,7 +52,7 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
               ease: 'easeInOut',
             }}
             style={{
-              left: `${15 + i * 15}%`,
+              left: `${15 + i * (isMobile ? 30 : 15)}%`,
               top: `${20 + i * 10}%`,
             }}
           />
@@ -57,12 +60,7 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
       </div>
 
       <div className="container mx-auto px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="space-y-8"
-        >
+        <div className="space-y-8">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -79,7 +77,7 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none"
+            className="text-4xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-none"
           >
             Your Health,{' '}
             <br className="hidden md:block" />
@@ -120,35 +118,10 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
                 Begin Your Analysis
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </span>
-              
-              {/* Animated Background Layers */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-primary-glow to-secondary"
-                initial={{ scale: 0, opacity: 0 }}
-                whileHover={{ 
-                  scale: 1, 
-                  opacity: 0.2,
-                  transition: { duration: 0.4, ease: 'easeOut' }
-                }}
-              />
-              
-              {/* Pulse Effect */}
-              <motion.div
-                className="absolute inset-0 bg-primary rounded-inherit"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0, 0.1, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
             </MagneticButton>
           </motion.div>
 
-          {/* Enhanced Stats */}
+          {/* Stats */}
           <ScrollReveal delay={0.6} className="pt-12">
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
               <AnimatedCounter value="99.9%" label="Accuracy Rate" delay={0} />
@@ -157,32 +130,27 @@ export default function HeroSection({ onGetStarted }: HeroSectionProps) {
             </div>
           </ScrollReveal>
 
-          {/* Floating Action Indicators */}
-          <motion.div
-            className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
+          {/* Hide scroll indicator on mobile */}
+          {!isMobile && (
             <motion.div
-              className="flex flex-col items-center space-y-2 text-muted-foreground"
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
             >
-              <span className="text-sm font-medium">Scroll to explore</span>
-              <motion.div
-                className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center"
-                whileHover={{ borderColor: 'hsl(var(--primary))' }}
-              >
-                <motion.div
-                  className="w-1 h-3 bg-primary rounded-full mt-2"
-                  animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                />
-              </motion.div>
+              <div className="flex flex-col items-center space-y-2 text-muted-foreground">
+                <span className="text-sm font-medium">Scroll to explore</span>
+                <div className="w-6 h-10 border-2 border-primary/30 rounded-full flex justify-center">
+                  <motion.div
+                    className="w-1 h-3 bg-primary rounded-full mt-2"
+                    animate={{ y: [0, 12, 0], opacity: [1, 0, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                </div>
+              </div>
             </motion.div>
-          </motion.div>
-        </motion.div>
+          )}
+        </div>
       </div>
     </section>
   );
