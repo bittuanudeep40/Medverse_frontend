@@ -30,12 +30,10 @@ const Index = () => {
         isVisible={showLoading}
         onComplete={handleLoadingComplete}
       />
-      {/* This is the single, corrected main container div */}
       <div className="min-h-screen bg-background overflow-x-hidden relative">
-        {/* Interactive Particle Background */}
-        <ParticleField />
+        {/* ParticleField is now rendered only when loading is NOT shown */}
+        {!showLoading && <ParticleField />}
         
-        {/* Enhanced Page Transition Container */}
         <motion.div
           className="relative z-10"
           initial={{ opacity: 0 }}
