@@ -13,7 +13,7 @@ const services = [
     title: 'AI Report Analysis',
     description: 'Upload your medical reports to get an easy-to-understand breakdown of the results with AI-powered insights.',
     icon: FileText,
-    href: 'https://medicalreportanalyser-mvfcb3d9m3ws3frtgyakbd.streamlit.app/',
+    href: 'https://report-analyser-two.vercel.app/',
     colorClass: 'blue' as const,
   },
   {
@@ -27,13 +27,14 @@ const services = [
     title: 'Medical Chatbot',
     description: 'Ask health-related questions and get instant, reliable information from our AI assistant trained on medical knowledge.',
     icon: MessageCircle,
-    href: 'https://medicalchatbot-3rqumjycxgiayadwvdpczr.streamlit.app/',
+    href: 'https://image-analysis-new.vercel.app/',
     colorClass: 'green' as const,
   },
   {
     title: 'Heart Attack Prediction',
     description: 'Assess your cardiovascular risk by providing key health metrics to our predictive AI model for personalized insights.',
     icon: Heart,
+    href: 'https://cosmic-bi-canvas.lovable.app/',
     colorClass: 'red' as const,
   },
 ];
