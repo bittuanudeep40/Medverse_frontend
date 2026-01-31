@@ -20,14 +20,14 @@ const services = [
     title: 'AI Image Analysis', 
     description: 'Get intelligent insights from your medical images like X-rays, MRIs, and CT scans using advanced computer vision.',
     icon: Image,
-    href: 'https://5qx7v5deepo4a4rcnefkdi.streamlit.app/',
+    href: 'https://image-analysis-new.vercel.app/',
     colorClass: 'purple' as const,
   },
   {
     title: 'Medical Chatbot',
     description: 'Ask health-related questions and get instant, reliable information from our AI assistant trained on medical knowledge.',
     icon: MessageCircle,
-    href: 'https://image-analysis-new.vercel.app/',
+    href: 'https://medicalchatbot-nxpejafwd6watgimcc42ua.streamlit.app/',
     colorClass: 'green' as const,
   },
   {
