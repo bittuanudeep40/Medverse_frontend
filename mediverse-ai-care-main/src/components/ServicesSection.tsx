@@ -38,6 +38,14 @@ const services = [
     colorClass: 'red' as const,
   },
 ];
+{
+    title: 'Brain Tumor Detection',
+    description: 'Utilize specialized AI models to detect and localize potential brain tumors from MRI scans with high precision.',
+    icon: Brain,
+    href: 'https://braintumer-pc9jupcprs47nfk9gcbspi.streamlit.app/',
+    colorClass: 'purple' as const, // You can choose blue, purple, green, or red
+  },
+];
 
 export default function ServicesSection({ onHeartPredictionClick }: ServicesSectionProps) {
   return (
