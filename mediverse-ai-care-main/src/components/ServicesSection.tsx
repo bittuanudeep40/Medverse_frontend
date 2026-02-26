@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { FileText, Image, MessageCircle, Heart, Users, Globe, Target, TrendingUp } from 'lucide-react';
+// 1. Added 'Brain' to the lucide-react imports
+import { FileText, Image, MessageCircle, Heart, Users, Globe, Target, TrendingUp, Brain } from 'lucide-react';
 import ServiceCard from './ServiceCard';
 import ScrollReveal from './ScrollReveal';
 import AnimatedCounter from './AnimatedCounter';
@@ -37,13 +38,13 @@ const services = [
     href: 'https://cosmic-bi-canvas.lovable.app/',
     colorClass: 'red' as const,
   },
-];
-{
+  // 2. Correctly merged Brain Tumor Detection into the array
+  {
     title: 'Brain Tumor Detection',
     description: 'Utilize specialized AI models to detect and localize potential brain tumors from MRI scans with high precision.',
     icon: Brain,
     href: 'https://braintumer-pc9jupcprs47nfk9gcbspi.streamlit.app/',
-    colorClass: 'purple' as const, // You can choose blue, purple, green, or red
+    colorClass: 'purple' as const,
   },
 ];
 
@@ -56,7 +57,6 @@ export default function ServicesSection({ onHeartPredictionClick }: ServicesSect
       transition={{ duration: 0.8 }}
     >
       <div className="container mx-auto px-6">
-        {/* Section Header */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -83,14 +83,14 @@ export default function ServicesSection({ onHeartPredictionClick }: ServicesSect
           </p>
         </motion.div>
 
-        {/* Services Grid */}
         <ScrollReveal>
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {/* 3. Changed grid-cols to handle 5 items better (3 columns on large screens) */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 50, rotateY: -15 }}
-                animate={{ 
+                whileInView={{ 
                   opacity: 1, 
                   y: 0, 
                   rotateY: 0,
@@ -100,6 +100,7 @@ export default function ServicesSection({ onHeartPredictionClick }: ServicesSect
                     ease: [0.25, 0.25, 0.25, 0.75]
                   }
                 }}
+                viewport={{ once: true }}
               >
                 <ServiceCard
                   title={service.title}
@@ -115,10 +116,8 @@ export default function ServicesSection({ onHeartPredictionClick }: ServicesSect
           </div>
         </ScrollReveal>
 
-        {/* Enhanced Trust Indicators */}
         <ScrollReveal delay={0.8} className="mt-20">
           <div className="glass-card p-8 rounded-2xl max-w-6xl mx-auto relative overflow-hidden">
-            {/* Background Animation */}
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-primary/5 via-secondary/5 to-accent/5"
               animate={{
